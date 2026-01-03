@@ -19,9 +19,26 @@ public class Actions {
         int option = scanner.nextInt();
         scanner.nextLine();
         return option;
+
+
     }
+
+    // *OPÇÃO 3 - ADICIONAR AUTOR*
+    public Author addAuthor(int id_author){
+        //*RECEBER DADOS*
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Name: ");
+        String name = scanner.nextLine();
+
+        // *ADICIONA AUTOR AO ARRAY EM Library.java*
+        Author author = new Author(id_author, name);
+        System.out.println("\nAuthor added\n");
+        return author;
+    }
+
     // *OPÇÃO 1 - ADICIONAR LIVROS*
-    public Book addBook(int id_book){
+    public Book addBook(int id_book, ArrayList<Author> authors){
         //*RECEBER DADOS*
         Scanner scanner = new Scanner(System.in);
 
@@ -33,6 +50,28 @@ public class Actions {
         String publisher = scanner.nextLine();
         System.out.println("Published Year:");
         int publishedYear = scanner.nextInt();
+
+        // Selecionar autor da lista ou criar novo
+        String authorName;
+        if (authors.isEmpty()) {
+            System.out.println("No authors registered. Enter author name:");
+            authorName = scanner.nextLine();
+        } else {
+            System.out.println("\nRegistered Authors:");
+            for (int i = 0; i < authors.size(); i++) {
+                System.out.println((i+1) + " - " + authors.get(i).getName());
+            }
+            System.out.print("\nSelect author number (or 0 to enter new name): ");
+            int authorChoice = scanner.nextInt();
+            scanner.nextLine();
+
+            if (authorChoice > 0 && authorChoice <= authors.size()) {
+                authorName = authors.get(authorChoice - 1).getName();
+            } else {
+                System.out.print("Enter author name: ");
+                authorName = scanner.nextLine();
+            }
+        }
 
         // *ADICIONA LIVRO AO ARRAY EM Library.java*
         Book book = new Book(id_book, title, author, publisher, publishedYear);
@@ -52,5 +91,32 @@ public class Actions {
             }
         }
 
+    }
+    // *OPÇÃO 4 - DELETAR LIVROS*
+    public void deleteBook(ArrayList<Book> books){
+        if (books.isEmpty()){
+            System.out.println("\n✗ No Books to delete\n");
+            return;
+        }
+
+        Scanner scanner = new Scanner(System.in);
+        listBooks(books);
+
+        System.out.print("Enter book ID to delete: ");
+        int bookId = scanner.nextInt();
+
+        boolean found = false;
+        for (int i = 0; i < books.size(); i++) {
+            if (books.get(i).getId() == bookId) {
+                books.remove(i);
+                System.out.println("\n✓ Book deleted successfully!\n");
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            System.out.println("\n✗ Book not found!\n");
+        }
     }
 }
