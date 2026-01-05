@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Actions {
 
-    //OPÇÕES DE Library.java
+    //CLASSE DAS OPÇÕES DE Library.java
     public int option(){
         //*RECEBER DADOS*
         Scanner scanner = new Scanner(System.in);
@@ -19,8 +19,6 @@ public class Actions {
         int option = scanner.nextInt();
         scanner.nextLine();
         return option;
-
-
     }
 
     // *OPÇÃO 3 - ADICIONAR AUTOR*
@@ -51,7 +49,7 @@ public class Actions {
         System.out.println("Published Year:");
         int publishedYear = scanner.nextInt();
 
-        // Selecionar autor da lista ou criar novo
+        // *SELECIONAR AUTOR OU ADICIONAR UM NOVO*
         String authorName;
         if (authors.isEmpty()) {
             System.out.println("No authors registered. Enter author name:");

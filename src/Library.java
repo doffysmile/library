@@ -20,7 +20,7 @@ public class Library {
         int  id_book = 1;
         int id_author = 1;
 
-        //LISTA DE OPÇÕES PARA RODAR EM Actions.java
+        //LISTA DE OPÇÕES PARA RODAR AS FUNÇÕES DE Actions.java
         do{
             int option = actions.option();
             switch (option) {
