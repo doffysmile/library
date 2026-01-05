@@ -6,7 +6,7 @@ public class Conection {
 
     private static final String url = "jdbc:mysql://localhost:3306/library";
     private static final String username = "root";
-    private static final String password = "11236554=Doffy";
+    private static final String password = "*********";
 
     private static Connection conn;
 
